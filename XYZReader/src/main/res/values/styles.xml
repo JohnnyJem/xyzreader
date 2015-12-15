@@ -16,23 +16,29 @@
 -->
 
 <resources>
-    <!-- Base Theme. -->
+    <style name="AppTheme" parent="AppTheme.Base"/>
+
     <style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
-
-        <item name="colorPrimary">#3F51B5</item>
-        <!-- Light Indigo -->
-        <item name="colorPrimaryDark">#3949AB</item>
-        <!-- Dark Indigo -->
-        <item name="colorAccent">#00B0FF</item>
-        <!-- Blue -->
-    </style>
-
-    <style name="AppTheme" parent="AppTheme.Base">
-
+        <item name="colorPrimary">@color/xyz_primary</item>
+        <item name="colorPrimaryDark">@color/xyz_primary_dark</item>
+        <item name="colorAccent">@color/xyz_accent</item>
     </style>
 
     <style name="AppTheme.Base.Detail">
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="AppTheme.TextAppearance" />
+
+    <style name="AppTheme.TextAppearance.ArticleItem" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.ArticleItem.Title" parent="AppTheme.TextAppearance.ArticleItem">
+    </style>
+    <style name="AppTheme.TextAppearance.ArticleItem.SubTitle" parent="AppTheme.TextAppearance.ArticleItem">
+        <item name="android:textSize">@dimen/category_item_sub_title_text_size</item>
+    </style>
+
 
 </resources>

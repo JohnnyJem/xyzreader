@@ -17,9 +17,12 @@
 
 <resources>
     <color name="photo_placeholder">#ccc</color>
+    <color name="xyz_primary">#3F51B5</color>
+    <color name="xyz_primary_dark">#3949AB</color>
+    <color name="xyz_accent">#00B0FF</color>
 
-    <color name="theme_primary">#04561A</color>
-    <color name="theme_primary_dark">#04561A</color>
-    <color name="theme_accent">#04561A</color>
     <color name="ltgray">#ffe0e0e0</color>
+    <color name="touch_effect">#9ccc</color>
+    <color name="text_light">@android:color/white</color>
+    <color name="text_dark">#616161</color>
 </resources>
