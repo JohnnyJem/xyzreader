@@ -3,15 +3,14 @@ package com.example.xyzreader.remote;
 import android.util.Log;
 
 import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONTokener;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class RemoteEndpointUtil {
@@ -44,29 +43,22 @@ public class RemoteEndpointUtil {
         return null;
     }
 
+    /**
+     * Credit for this revised fetchPlainText method goes to szrt_228614756367833
+     * from the Udacity forums.
+     * Updated okHtpp version to handle https/uri requests/builds, so
+     * previous fetch() method was not needed anymore.
+     */
+
     static String fetchPlainText(URL url) throws IOException {
-        return new String(fetch(url), "UTF-8" );
-    }
+        OkHttpClient client = new OkHttpClient();
 
-    static byte[] fetch(URL url) throws IOException {
-        InputStream in = null;
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
 
-        try {
-            OkHttpClient client = new OkHttpClient();
-            HttpURLConnection conn = client.open(url);
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            in = conn.getInputStream();
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = in.read(buffer)) > 0) {
-                out.write(buffer, 0, bytesRead);
-            }
-            return out.toByteArray();
+        Response response = client.newCall(request).execute();
 
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-        }
+        return response.body().string();
     }
 }
