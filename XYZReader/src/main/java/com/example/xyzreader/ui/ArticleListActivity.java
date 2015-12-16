@@ -43,7 +43,7 @@ public class ArticleListActivity extends ActionBarActivity implements
     @Bind(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
     @Bind(R.id.recycler_view)
-    AutofitRecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +119,7 @@ public class ArticleListActivity extends ActionBarActivity implements
         mRecyclerView.setAdapter(null);
     }
 
-    private class Adapter extends AutofitRecyclerView.Adapter<ViewHolder> {
+    private class Adapter extends RecyclerView.Adapter<ViewHolder> {
         private Context context;
         private Cursor mCursor;
 
@@ -153,20 +153,19 @@ public class ArticleListActivity extends ActionBarActivity implements
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             mCursor.moveToPosition(position);
-            holder.titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
-            holder.subtitleView.setText(
-                    DateUtils.getRelativeTimeSpanString(
-                            mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
-                            System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-                            DateUtils.FORMAT_ABBREV_ALL).toString()
-                            + "\nby "
-                            + mCursor.getString(ArticleLoader.Query.AUTHOR));
 
-                Glide.with(context)
+            Glide.with(context)
                     .load(mCursor.getString(ArticleLoader.Query.THUMB_URL))
                     .fitCenter()
                     .crossFade()
                     .into(holder.thumbnailView);
+
+            holder.titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+            holder.subtitleView.setText(mCursor.getString(ArticleLoader.Query.AUTHOR));
+            holder.articleDate.setText(DateUtils.getRelativeTimeSpanString(
+                    mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
+                    System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
+                    DateUtils.FORMAT_ABBREV_ALL).toString());
         }
 
         @Override
@@ -180,6 +179,7 @@ public class ArticleListActivity extends ActionBarActivity implements
         @Bind(R.id.thumbnail) ImageView thumbnailView;
         @Bind(R.id.article_title) TextView titleView;
         @Bind(R.id.article_subtitle) TextView subtitleView;
+        @Bind(R.id.article_date) TextView articleDate;
 
         public ViewHolder(View view) {
             super(view);

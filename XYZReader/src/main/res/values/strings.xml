@@ -10,5 +10,7 @@
     <string name="up">Up</string>
     <string name="test_string">test</string>
     <string name="category">category</string>
+    <string name="item_title">Title</string>
+    <string name="item_desc">description</string>
 
 </resources>

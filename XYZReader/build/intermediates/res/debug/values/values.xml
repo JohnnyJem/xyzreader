@@ -35,6 +35,11 @@
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
+    <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="button_grey">#757575</color>
+    <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/res/values/values.xml -->
@@ -160,6 +165,11 @@
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/><attr format="reference" name="theme"/><attr name="android:theme"/></declare-styleable>
     <declare-styleable name="ViewBackgroundHelper"><attr name="android:background"/><attr format="color" name="backgroundTint"/><attr name="backgroundTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/></attr></declare-styleable>
     <declare-styleable name="ViewStubCompat"><attr name="android:layout"/><attr name="android:inflatedId"/><attr name="android:id"/></declare-styleable>
+    <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="League">15sp</dimen>
+    <dimen name="Score">30sp</dimen>
+    <dimen name="TeamNames">17sp</dimen>
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/values/values.xml -->
     <eat-comment/>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
@@ -229,6 +239,20 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
+    <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="app_bar_height">256dp</dimen>
+    <dimen name="article_keylines">72dp</dimen>
+    <dimen name="article_subheading">16sp</dimen>
+    <dimen name="article_titles">20sp</dimen>
+    <dimen name="avator_size">40dp</dimen>
+    <dimen name="card_height">304dp</dimen>
+    <dimen name="card_image_height">200dp</dimen>
+    <dimen name="card_title_height">40dp</dimen>
+    <dimen name="cards_button_height">48dp</dimen>
+    <dimen name="cards_button_width">48dp</dimen>
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/res/values/values.xml -->
     <eat-comment/>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
@@ -304,14 +328,20 @@
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/res/values/values.xml -->
     <eat-comment/>
     <dimen name="item_touch_helper_max_drag_scroll_per_frame">20dp</dimen>
+    <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="list_body">14sp</dimen>
+    <dimen name="list_horizonal_margin">120dp</dimen>
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/src/main/res/values/macro_layout.xml -->
     <eat-comment/>
     <dimen name="list_side_margin">4dp</dimen>
     <dimen name="list_toolbar_side_margin">0dp</dimen>
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/src/main/res/values/dimens.xml -->
     <eat-comment/>
+    <dimen name="md_keylines">16dp</dimen>
     <dimen name="min_height_question">144dp</dimen>
     <dimen name="min_height_touch_target">48dp</dimen>
+    <dimen name="navheader_height">222dp</dimen>
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/values/values.xml -->
     <eat-comment/>
     <dimen name="notification_large_icon_height">64dp</dimen>
@@ -329,6 +359,8 @@
     <dimen name="spacing_nano">2dp</dimen>
     <dimen name="spacing_normal">8dp</dimen>
     <dimen name="stroke_width_avatar">4dp</dimen>
+    <dimen name="tile_height">160dp</dimen>
+    <dimen name="tile_padding">8dp</dimen>
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/values/values.xml -->
     <eat-comment/>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
@@ -403,6 +435,10 @@
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/design/23.1.1/res/values/values.xml -->
     <eat-comment/>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
+    <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="item_desc">description</string>
+    <string name="item_title">Title</string>
     <!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/values/values.xml -->
     <eat-comment/>
     <string name="status_bar_notification_info_overflow">999+</string>

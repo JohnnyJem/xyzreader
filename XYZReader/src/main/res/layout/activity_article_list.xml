@@ -27,12 +27,13 @@ android:layout_height="match_parent">
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.example.xyzreader.ui.AutofitRecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:scrollbarStyle="outsideOverlay"/>
+        android:scrollbarStyle="outsideOverlay"
+        android:paddingTop="@dimen/spacing_micro"/>
 </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.design.widget.CoordinatorLayout>
