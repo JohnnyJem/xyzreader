@@ -35,6 +35,7 @@
     </style>
 
     <style name="AppTheme.TextAppearance.ArticleItem.Title" parent="AppTheme.TextAppearance.ArticleItem">
+    <item name="android:textSize">@dimen/category_item_title_text_size</item>
     </style>
     <style name="AppTheme.TextAppearance.ArticleItem.SubTitle" parent="AppTheme.TextAppearance.ArticleItem">
         <item name="android:textSize">@dimen/category_item_sub_title_text_size</item>

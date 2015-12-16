@@ -1,48 +1,44 @@
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
+xmlns:card_view="http://schemas.android.com/apk/res-auto"
 android:id="@+id/category_item"
 android:layout_width="match_parent"
-android:minHeight="200dp"
 android:layout_height="wrap_content"
+android:layout_gravity="center"
 android:foreground="@drawable/selector_subtle"
 tools:ignore="UseCompoundDrawables"
 android:elevation="@dimen/elevation_header">
-
     <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/photo_placeholder"
         android:contentDescription="@string/category" />
-
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="left|bottom"
+    android:layout_height="match_parent"
     android:padding="@dimen/spacing_double"
-    android:background="#4D000000"
+    android:background="#40000000"
     android:orientation="vertical">
     <TextView
         android:id="@+id/article_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start|center_vertical"
-        android:paddingBottom="@dimen/spacing_normal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:textAppearance="@style/AppTheme.TextAppearance.ArticleItem.Title"
         android:text="@string/test_string"/>
-
     <TextView
         android:id="@+id/article_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:textAppearance="@style/AppTheme.TextAppearance.ArticleItem.SubTitle"
         android:maxLines="2"
-        android:singleLine="true"
         android:ellipsize="end"
-        android:text="@string/test_string"
-        android:layout_gravity="start|bottom" />
-</LinearLayout>
+        android:text="@string/test_string" />
+</RelativeLayout>
 
-
-</FrameLayout><!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/src/main/res/layout/list_item_article.xml -->
+</android.support.v7.widget.CardView><!-- From: file:/C:/Users/Johnny/Google%20Drive/Workspace/Udacity/xyzreader/XYZReader/src/main/res/layout/list_item_article.xml -->

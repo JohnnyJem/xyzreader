@@ -6,13 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.View;
@@ -42,7 +43,7 @@ public class ArticleListActivity extends ActionBarActivity implements
     @Bind(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
     @Bind(R.id.recycler_view)
-    RecyclerView mRecyclerView;
+    AutofitRecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,9 +107,11 @@ public class ArticleListActivity extends ActionBarActivity implements
         Adapter adapter = new Adapter(cursor);
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
-        int columnCount = getResources().getInteger(R.integer.list_column_count);
-
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this.getBaseContext(),columnCount));
+        int columnCount = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? 2 : 3;
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new
+                StaggeredGridLayoutManager(columnCount,StaggeredGridLayoutManager.VERTICAL);
+        staggeredGridLayoutManager.setGapStrategy(2);
+        mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
     }
 
     @Override
@@ -119,8 +122,6 @@ public class ArticleListActivity extends ActionBarActivity implements
     private class Adapter extends AutofitRecyclerView.Adapter<ViewHolder> {
         private Context context;
         private Cursor mCursor;
-
-
 
         public Adapter(Cursor cursor) {
             mCursor = cursor;
@@ -158,13 +159,12 @@ public class ArticleListActivity extends ActionBarActivity implements
                             mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                             System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
                             DateUtils.FORMAT_ABBREV_ALL).toString()
-                            + " by "
+                            + "\nby "
                             + mCursor.getString(ArticleLoader.Query.AUTHOR));
 
                 Glide.with(context)
                     .load(mCursor.getString(ArticleLoader.Query.THUMB_URL))
                     .fitCenter()
-                    .centerCrop()
                     .crossFade()
                     .into(holder.thumbnailView);
         }

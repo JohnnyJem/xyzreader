@@ -2,15 +2,15 @@ package com.example.xyzreader.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 
 /**
  * Created by Johnny on 12/15/2015.
  */
 public class AutofitRecyclerView extends RecyclerView {
-    private GridLayoutManager manager;
+    private StaggeredGridLayoutManager manager;
     private int columnWidth = -1;
 
     public AutofitRecyclerView(Context context) {
@@ -38,7 +38,7 @@ public class AutofitRecyclerView extends RecyclerView {
             array.recycle();
         }
 
-        manager = new GridLayoutManager(getContext(), 1);
+        manager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         setLayoutManager(manager);
     }
 
