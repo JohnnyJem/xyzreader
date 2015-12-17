@@ -1,12 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
+<items version="2" />
 
-    <item
-        jar="C:\Users\Johnny\Google Drive\Workspace\Udacity\xyzreader\XYZReader\build\intermediates\incremental-classes\debug\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="7fd95e797a04eebe5ee995de8be2fccfaf361b95">
-        <dex dex="C:\Users\Johnny\Google Drive\Workspace\Udacity\xyzreader\XYZReader\build\intermediates\pre-dexed\debug\classes_b238692fa5cc90737af5af9cc72f9d47456dccc8.jar" />
-    </item>
-
-</items>
