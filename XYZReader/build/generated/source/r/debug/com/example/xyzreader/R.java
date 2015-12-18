@@ -2508,11 +2508,11 @@ containing a value of this type.
         public static final int alertTitle=0x7f0d0049;
         public static final int always=0x7f0d0032;
         public static final int app_bar_layout=0x7f0d0069;
-        public static final int article_body=0x7f0d007c;
-        public static final int article_byline=0x7f0d007b;
+        public static final int article_body=0x7f0d007d;
+        public static final int article_byline=0x7f0d007c;
         public static final int article_date=0x7f0d0080;
         public static final int article_subtitle=0x7f0d007f;
-        public static final int article_title=0x7f0d007e;
+        public static final int article_title=0x7f0d007b;
         public static final int beginning=0x7f0d0030;
         public static final int bottom=0x7f0d001c;
         public static final int buttonPanel=0x7f0d0044;
@@ -2620,7 +2620,7 @@ containing a value of this type.
         public static final int text=0x7f0d008b;
         public static final int text2=0x7f0d0089;
         public static final int textSpacerNoButtons=0x7f0d004d;
-        public static final int thumbnail=0x7f0d007d;
+        public static final int thumbnail=0x7f0d007e;
         public static final int time=0x7f0d0087;
         public static final int title=0x7f0d0043;
         public static final int title_template=0x7f0d0048;
