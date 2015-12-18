@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -54,8 +53,6 @@ public class ArticleListActivity extends ActionBarActivity implements
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mToolbar.setNavigationIcon(R.drawable.logo);
-        mToolbar.getNavigationIcon().getPadding(new Rect(8,0,0,0));
-
 
         getLoaderManager().initLoader(0, null, this);
 
@@ -110,8 +107,11 @@ public class ArticleListActivity extends ActionBarActivity implements
         int columnCount = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? 2 : 3;
         StaggeredGridLayoutManager staggeredGridLayoutManager = new
                 StaggeredGridLayoutManager(columnCount,StaggeredGridLayoutManager.VERTICAL);
-        staggeredGridLayoutManager.setGapStrategy(2);
         mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+
+        SpacesItemDecoration decoration = new SpacesItemDecoration(8);
+        mRecyclerView.addItemDecoration(decoration);
+
     }
 
     @Override
@@ -135,7 +135,7 @@ public class ArticleListActivity extends ActionBarActivity implements
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = getLayoutInflater().inflate(R.layout.list_item_article, parent, false);
+            View view = getLayoutInflater().inflate(R.layout.grid_item, parent, false);
             context = view.getContext();
 
             final ViewHolder vh = new ViewHolder(view);
