@@ -5,21 +5,11 @@ import android.app.FragmentManager;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.graphics.Palette;
-import android.util.TypedValue;
-import android.view.View;
-import android.widget.ImageView;
 
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
@@ -32,23 +22,13 @@ public class ArticleDetailActivity extends ActionBarActivity
 
     private Cursor mCursor;
     private long mStartId;
-
     private long mSelectedItemId;
-    private int mSelectedItemUpButtonFloor = Integer.MAX_VALUE;
-    private int mTopInset;
-    private int mMutedColor = 0xFF333333;
-
     private ViewPager mPager;
     private MyPagerAdapter mPagerAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        }
         setContentView(R.layout.activity_article_detail);
 
         getLoaderManager().initLoader(0, null, this);
@@ -56,53 +36,20 @@ public class ArticleDetailActivity extends ActionBarActivity
         mPagerAdapter = new MyPagerAdapter(getFragmentManager());
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mPagerAdapter);
-        mPager.setPageMargin((int) TypedValue
-                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics()));
-        mPager.setPageMarginDrawable(new ColorDrawable(0x22000000));
 
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
             }
-
             @Override
             public void onPageSelected(int position) {
                 if (mCursor != null) {
                     mCursor.moveToPosition(position);
                 }
                 mSelectedItemId = mCursor.getLong(ArticleLoader.Query._ID);
-
-                ImageLoaderHelper.getInstance(getBaseContext()).getImageLoader()
-                        .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
-                            @Override
-                            public void onResponse(ImageLoader.ImageContainer imageContainer, boolean b) {
-                                Bitmap bitmap = imageContainer.getBitmap();
-                                if (bitmap != null) {
-                                    Palette p = Palette.generate(bitmap, 12);
-                                    mMutedColor = p.getDarkMutedColor(0xFF333333);
-                                    ImageView squareImageView = (ImageView) findViewById(R.id.imagethumbnail);
-                                    squareImageView.setImageBitmap(imageContainer.getBitmap());
-                                    /*mRootView.findViewById(R.id.meta_bar)
-                                            .setBackgroundColor(mMutedColor);
-                                            */
-                                }
-                            }
-
-                            @Override
-                            public void onErrorResponse(VolleyError volleyError) {
-
-                            }
-                        });
-
-                CollapsingToolbarLayout collapsingToolbar =
-                        (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-                collapsingToolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
             }
         });
-
-
-
 
         if (savedInstanceState == null) {
             if (getIntent() != null && getIntent().getData() != null) {
@@ -111,7 +58,6 @@ public class ArticleDetailActivity extends ActionBarActivity
             }
         }
     }
-
 
 
     @Override
@@ -127,7 +73,6 @@ public class ArticleDetailActivity extends ActionBarActivity
         // Select the start ID
         if (mStartId > 0) {
             mCursor.moveToFirst();
-            // TODO: optimize
             while (!mCursor.isAfterLast()) {
                 if (mCursor.getLong(ArticleLoader.Query._ID) == mStartId) {
                     final int position = mCursor.getPosition();
@@ -138,33 +83,6 @@ public class ArticleDetailActivity extends ActionBarActivity
             }
             mStartId = 0;
         }
-
-        ImageLoaderHelper.getInstance(getBaseContext()).getImageLoader()
-                .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
-                    @Override
-                    public void onResponse(ImageLoader.ImageContainer imageContainer, boolean b) {
-                        Bitmap bitmap = imageContainer.getBitmap();
-                        if (bitmap != null) {
-                            Palette p = Palette.generate(bitmap, 12);
-                            mMutedColor = p.getDarkMutedColor(0xFF333333);
-                            ImageView squareImageView = (ImageView) findViewById(R.id.imagethumbnail);
-                            squareImageView.setImageBitmap(imageContainer.getBitmap());
-                                    /*mRootView.findViewById(R.id.meta_bar)
-                                            .setBackgroundColor(mMutedColor);
-                                            */
-                        }
-                    }
-
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-
-                    }
-                });
-
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
-
     }
 
     @Override
@@ -172,7 +90,6 @@ public class ArticleDetailActivity extends ActionBarActivity
         mCursor = null;
         mPagerAdapter.notifyDataSetChanged();
     }
-
 
 
     private class MyPagerAdapter extends FragmentStatePagerAdapter {
