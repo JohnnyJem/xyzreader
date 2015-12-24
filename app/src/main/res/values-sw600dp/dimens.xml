@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="detail_title_text_size">28sp</dimen>
+    <dimen name="detail_subtitle_text_size">24sp</dimen>
+    <dimen name="detail_body_text_size">22sp</dimen>
+
+    <dimen name="grid_item_title_text_size">18sp</dimen>
+    <dimen name="grid_item_subtitle_text_size">16sp</dimen>
+    <dimen name="grid_item_date_text_size">14sp</dimen>
+</resources>
