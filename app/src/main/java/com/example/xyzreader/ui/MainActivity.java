@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
+    private boolean mIsRefreshing = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements
         getLoaderManager().initLoader(0, null, this);
 
         if (savedInstanceState == null) {
+            mIsRefreshing = false;
             refresh();
         }
 
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements
         unregisterReceiver(mRefreshingReceiver);
     }
 
-    private boolean mIsRefreshing = false;
+
 
     private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
         @Override
@@ -134,11 +136,13 @@ public class MainActivity extends AppCompatActivity implements
 
     private void updateRefreshingUI() {
         mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
+        mSwipeRefreshLayout.setEnabled(mIsRefreshing);
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return ArticleLoader.newAllArticlesInstance(this);
+
     }
 
     @Override
