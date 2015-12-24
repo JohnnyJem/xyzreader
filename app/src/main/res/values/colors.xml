@@ -16,4 +16,7 @@
 
 <resources>
     <color name="window_background">#FFF5F5F5</color>
+    <color name="color_primary">#3F51B5</color>
+    <color name="color_primary_dark">#3949AB</color>
+    <color name="color_primary_accent">#00B0FF</color>
 </resources>

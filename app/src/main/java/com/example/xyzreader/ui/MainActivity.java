@@ -102,7 +102,15 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.color_primary, R.color.color_primary_dark, R.color.color_primary_accent);
 
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
     }
 
     private void refresh() {
@@ -136,7 +144,6 @@ public class MainActivity extends AppCompatActivity implements
 
     private void updateRefreshingUI() {
         mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
-        mSwipeRefreshLayout.setEnabled(mIsRefreshing);
     }
 
     @Override
@@ -155,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements
                 StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
 
-        SpacesItemDecoration decoration = new SpacesItemDecoration(8);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(4);
         mRecyclerView.addItemDecoration(decoration);
     }
 
