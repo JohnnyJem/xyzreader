@@ -20,6 +20,7 @@
     <color name="xyz_primary">#3F51B5</color>
     <color name="xyz_primary_dark">#3949AB</color>
     <color name="xyz_accent">#00B0FF</color>
+    <color name="transparent">#00000000</color>
 
     <color name="ltgray">#ffe0e0e0</color>
     <color name="touch_effect">#9ccc</color>
