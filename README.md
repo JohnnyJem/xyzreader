@@ -6,7 +6,7 @@ Modified the course-provided mock RSS reader with the latest Material Design Gui
 ## Build/Install Instructions
 none
 
-### Working with Material Design Support Library
+## Working with Material Design Support Library
 * Used the Design Support library and its provided widget types (FloatingActionButton, AppBarLayout, SnackBar, etc)
 * Uses CoordinatorLayout for the main Activity along with app bar and associated toolbars.
 * Has a consistent color theme defined in styles.xml along with color extractions and dynamic updating.
