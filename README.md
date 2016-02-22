@@ -1,5 +1,5 @@
 # xyzreader
-Project # 5 for Udacity Nanodegree
+Project # 5 for Android Nanodegree
 
 Modified the course-provided mock RSS reader with the latest Material Design Guidelines using Google's Material Design Support Library.
 
