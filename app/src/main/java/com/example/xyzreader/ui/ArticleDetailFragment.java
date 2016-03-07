@@ -1,11 +1,14 @@
 package com.example.xyzreader.ui;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -31,15 +34,20 @@ public class ArticleDetailFragment extends Fragment implements
     private static final String TAG = "ArticleDetailFragment";
 
     public static final String ARG_ITEM_ID = "item_id";
+    public static final String ARG_COLOR_ID = "color_id";
     private static final float PARALLAX_FACTOR = 1.25f;
 
     private Cursor mCursor;
     private long mItemId;
+    private String mItemTitle = "";
     private int mMutedColor = 0xFF333333;
-
+    OnHeadlineSelectedListener mCallback;
     private View mRootView;
+    NestedScrollView mNestedScrollView;
     ImageView imageView;
     CollapsingToolbarLayout collapsingToolbarLayout;
+    Toolbar mToolbar;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -48,6 +56,8 @@ public class ArticleDetailFragment extends Fragment implements
 
     public ArticleDetailFragment() {
     }
+
+
 
     public static ArticleDetailFragment newInstance(long itemId) {
         Bundle arguments = new Bundle();
@@ -67,6 +77,18 @@ public class ArticleDetailFragment extends Fragment implements
         setHasOptionsMenu(true);
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnHeadlineSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -84,16 +106,51 @@ public class ArticleDetailFragment extends Fragment implements
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
         ButterKnife.bind(this, mRootView);
 
+        mNestedScrollView = (NestedScrollView) mRootView.findViewById(R.id.view);
+
         imageView = (ImageView) mRootView.findViewById(R.id.imagebig);
         collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.collapsing_toolbar);
+        mToolbar = (Toolbar) mRootView.findViewById(R.id.toolbar);
+
+        ArticleDetailActivity activity = (ArticleDetailActivity) getActivity();
+        activity.setSupportActionBar(mToolbar);
+
+        mCallback.onArticleSelected(collapsingToolbarLayout);
+
+        mNestedScrollView.setOnScrollChangeListener(
+                new NestedScrollView.OnScrollChangeListener() {
+                    @Override
+                    public void onScrollChange(
+                            NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                        if (scrollY > oldScrollY) {
+                            mCallback.onNestedScrollChange(true);
+                        }else if (scrollY < oldScrollY){
+                            mCallback.onNestedScrollChange(false);
+                        }
+                    }
+                });
+
+
         bindViews();
         return mRootView;
     }
 
+
+
     @Override
     public void onResume() {
         super.onResume();
+    }
 
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(isVisibleToUser && isResumed()){
+            collapsingToolbarLayout.setTitle(mItemTitle);
+            mCallback.onArticleSelected(collapsingToolbarLayout);
+        }
     }
 
     @Override
@@ -133,14 +190,15 @@ public class ArticleDetailFragment extends Fragment implements
         if (mRootView == null) {
             return;
         }
-
         TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
 
-
         if (mCursor != null) {
+            mItemTitle = mCursor.getString(ArticleLoader.Query.TITLE);
             titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+            collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+
             bylineView.setText(Html.fromHtml(
                     DateUtils.getRelativeTimeSpanString(
                             mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
